@@ -1,8 +1,11 @@
 # near-mintknight-api-integration
 
-Partial code parts of the integration with Near
+Partial code parts of the integration with Near.
+
 The code in this repository is partially taken from the Mintknight API.
+
 This repository is temporarily publicly available.
+
 Sensitive data is not shared. The code that is exposed refers to the part of the integration with Near.
 
 # Content gates
