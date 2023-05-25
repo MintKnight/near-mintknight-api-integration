@@ -896,4 +896,55 @@ module.exports = class Near {
     return true;
   }
 
+  /**
+   *  Sign message
+   *
+   * @param {string} message
+   * @param {string} network | "near.testnet" or "near.mainnet"
+   * @param {object} credentials { accountId, privateKey }
+   * @returns {object} common ret
+   */  
+  static async signMessage(
+    message, 
+    network,
+    credentials,
+  ) {
+    // Connect
+    const connResult = await Near.connectNear(network, credentials);
+    if (!connResult.success) {
+      return connResult;
+    }
+    const mkKeyPair = connResult.mkKeyPair;
+    const msg = Buffer.from(message);
+    const { signature } = mkKeyPair.sign(msg);
+    return {success: true, signature};
+  }
+
+  /**
+   *  Verify signature
+   *
+   * @param {string} msg
+   * @param {string} signature
+   * @param {string} network | "near.testnet" or "near.mainnet"
+   * @param {object} credentials { accountId, privateKey }
+   * @returns {object} common ret
+   */  
+  static async verifySignature(
+    message, 
+    signature, 
+    network,
+    credentials,
+  ) {
+    // Connect
+    const connResult = await Near.connectNear(network, credentials);
+    if (!connResult.success) {
+      return connResult;
+    }
+    const mkKeyPair = connResult.mkKeyPair;
+    const msg = Buffer.from(message);
+    const isValid = mkKeyPair.verify(msg, signature);
+    return {success: isValid};
+  }
+};
+
 };
