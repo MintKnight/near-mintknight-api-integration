@@ -80,9 +80,9 @@ We can find and script or test how to sign and verify with Near wallets.
 
 # Build account abstraction and recovery system for NEAR wallets
 
-When creating a wallet, we encrypt the key with 'Shamir Secret Sharing' in 3 portions. To recover the private key we only need 2 portions.
+When someone creates a new wallet, Mintknight encrypt the private key with 'Shamir Secret Sharing' in 3 portions. To recover the private key we only need 2 portions.
 
-A portion of the key (skey1) is returned in the wallet creation request. This has to be kept by the client. And the other portions (skey and skey2) are kept by Mintknight.
+A portion of the this private key (skey1) is returned in the same wallet creation request. It has to be kept by the client. And the other portions (skey and skey2) are kept by Mintknight.
 
 How encryption works:
 
@@ -124,3 +124,4 @@ We can see how Mintknight encrypts the wallet and divides it into 3 portions:
 - src/utils/near.js
     - method: deployWallet
     - method: addWallet
+- src/utils/shamir.js
