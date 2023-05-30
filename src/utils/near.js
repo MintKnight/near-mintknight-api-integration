@@ -107,16 +107,16 @@ module.exports = class Near {
     wallet.address = result.address;
     wallet.owner = result.address;
     wallet.skey = result.shamir[0];
-    wallet.skey1 = result.shamir[1];
     wallet.accountId = result.accountId;
     await wallet.save(); 
-    // Save skey2 locally (temporarily)
+    // Save skey2 (mintknight secrets)
     saveShareSKey2(wallet._id, result.shamir[2]);
     // Happy end
     ret.success = true;
     ret.txHash = '';
     ret.cost = 0;    
     ret.address = result.publicKey;
+    ret.skey = result.shamir[1];
     return ret;
   }
 
